@@ -8,15 +8,12 @@ import 'element-ui/lib/theme-chalk/index.css'
 import './ldustu-ele-admin/styles/index.scss'
 Vue.use(ElementUI)
 
+import eleAdmin from './ldustu-ele-admin'
+import config from './admin.config'
+Vue.use(eleAdmin, config)
+
 Vue.config.productionTip = false
 
-import admin from './ldustu-ele-admin'
-
-const config = {
-  whiteList: ['/login', '/hello'],
-}
-
-admin.permission(router, config)
 
 new Vue({
   router,

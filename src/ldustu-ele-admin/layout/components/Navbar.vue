@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import eleAdminState, { getState } from '../../state'
 import Breadcrumb from '../../components/Breadcrumb'
 import Hamburger from '../../components/Hamburger'
 
@@ -42,7 +43,7 @@ export default {
   },
   computed: {
     sidebar() {
-      return this.$store.state.layout.sidebar
+      return getState('sidebar')
     },
     avatar() {
       return ''
@@ -50,11 +51,15 @@ export default {
   },
   methods: {
     toggleSideBar() {
-      this.$store.dispatch('layout/toggleSideBar')
+      if (this.sidebar.opened) {
+        eleAdminState.closeSidebar()
+      } else {
+        eleAdminState.openSidebar()
+      }
     },
     async logout() {
       // await this.$store.dispatch('user/logout')
-      this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+      await this.$router.push(`/login?redirect=${this.$route.fullPath}`)
     }
   }
 }

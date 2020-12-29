@@ -1,7 +1,9 @@
+import { getState } from "../../../state"
+
 export default {
   computed: {
     device() {
-      return this.$store.state.app.device
+      return getState('app').device
     }
   },
   mounted() {

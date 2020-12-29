@@ -113,8 +113,6 @@ export default {
   },
   methods: {
     handleChange(file, fileList) {
-      // console.log(file)
-      // console.log(fileList)
     },
     handleSuccess(res, file) {
       this.picture.push(res.data.path)
@@ -178,14 +176,12 @@ export default {
       })
     },
     showOrder() {
-      console.log('重新加载')
       var _this = this
       var arrowLeft = document.querySelectorAll('.left-arrow')
       arrowLeft.forEach(t => t.remove())
       var arrowRight = document.querySelectorAll('.right-arrow')
       arrowRight.forEach(t => t.remove())
       var ulList = document.querySelector('.el-upload-list.el-upload-list--picture-card')
-      console.log(ulList.childNodes)
       ulList.childNodes.forEach((li, index) => {
         li.style.position = 'relative'
         var left = document.createElement('div')
@@ -197,7 +193,6 @@ export default {
         left.style.background = '#fff';
         (function (obj, m) {
           left.onclick = function () {
-            console.log(m)
             if (m < 1) return false
             var tmp = _this.picture.splice(m, 1)[0]
             _this.picture.splice(m-1, 0, tmp)
@@ -215,7 +210,6 @@ export default {
         right.style.background = '#fff';
         (function (obj, m) {
           right.onclick = function () {
-            console.log(m)
             if (m >= _this.fileList.length-2) return false
             var tmp = _this.picture.splice(m, 1)[0]
             _this.picture.splice(m+1, 0, tmp)

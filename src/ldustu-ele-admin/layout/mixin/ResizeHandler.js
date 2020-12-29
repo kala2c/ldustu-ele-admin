@@ -1,14 +1,13 @@
-import store from '@/store'
+import eleAdminState from '../../state'
 
 const { body } = document
 const WIDTH = 992 // 参考bootstrap的响应式宽度设计
 
 export default {
   watch: {
-    $route(route) {
-      console.log(route)
+    $route() {
       if (this.device === 'mobile' && this.sidebar.opened) {
-        store.dispatch('layout/closeSideBar', { withoutAnimation: false })
+        eleAdminState.closeSidebar({ withoutAnimation: false })
       }
     }
   },
@@ -21,8 +20,8 @@ export default {
   mounted() {
     const isMobile = this.$_isMobile()
     if (isMobile) {
-      store.dispatch('layout/toggleDevice', 'mobile')
-      store.dispatch('layout/closeSideBar', { withoutAnimation: true })
+      eleAdminState.toggleDevice('mobile')
+      eleAdminState.closeSidebar({ withoutAnimation: true })
     }
   },
   methods: {
@@ -34,10 +33,9 @@ export default {
     $_resizeHandler() {
       if (!document.hidden) {
         const isMobile = this.$_isMobile()
-        store.dispatch('layout/toggleDevice', isMobile ? 'mobile' : 'desktop')
-
+        eleAdminState.toggleDevice(isMobile ? 'mobile' : 'desktop')
         if (isMobile) {
-          store.dispatch('layout/closeSideBar', { withoutAnimation: true })
+          eleAdminState.closeSidebar({ withoutAnimation: true })
         }
       }
     }

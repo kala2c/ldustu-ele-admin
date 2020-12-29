@@ -20,19 +20,23 @@
 </template>
 
 <script>
+import eleAdminState, { getState } from '../../../state'
 import Logo from './Logo'
 import SidebarItem from './SidebarItem'
 import variables from '../../../styles/variables.scss'
-
 export default {
   components: { SidebarItem, Logo },
+  data() {
+    return {
+    }
+  },
   computed: {
+    // ...getState(),
     sidebar() {
-      console.log(this.$store)
-      return this.$store.state.layout.sidebar
+      return getState('sidebar')
     },
     permissionRoutes() {
-      return this.$store.state.layout.permissionRoutes
+      return eleAdminState.getRoutes()
     },
     routes() {
       return this.$router.options.routes
@@ -46,7 +50,7 @@ export default {
       return path
     },
     showLogo() {
-      return ''
+      return true
     },
     variables() {
       return variables
@@ -54,6 +58,8 @@ export default {
     isCollapse() {
       return !this.sidebar.opened
     }
+  },
+  mounted() {
   }
 }
 </script>

@@ -3,8 +3,6 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-import layout from '../ldustu-ele-admin/store/layout'
-
 export default new Vuex.Store({
   state: {
   },
@@ -13,6 +11,5 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
-    layout
   }
 })

@@ -14,6 +14,7 @@
 <script>
 import { Navbar, Sidebar, AppMain } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
+import eleAdminState, { getState } from '../state'
 
 export default {
   name: 'Layout',
@@ -25,13 +26,13 @@ export default {
   mixins: [ResizeMixin],
   computed: {
     sidebar() {
-      return this.$store.state.layout.sidebar
+      return getState('sidebar')
     },
     device() {
-      return this.$store.state.layout.device
+      return getState('app').device
     },
     fixedHeader() {
-      return true
+      return getState('app').fixedHeader
     },
     classObj() {
       return {
@@ -44,7 +45,7 @@ export default {
   },
   methods: {
     handleClickOutside() {
-      this.$store.dispatch('layout/closeSideBar', { withoutAnimation: false })
+      eleAdminState.closeSidebar({withoutAnimation: true})
     }
   }
 }
